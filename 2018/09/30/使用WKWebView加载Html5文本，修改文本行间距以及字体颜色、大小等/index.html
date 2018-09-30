@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1.在使用WKWebView加载Html文本的时候，需要引入头文件  #import  WebKit/WebKit.h   2.创建WKWebView`  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(1">
+<meta name="description" content="###1.在使用WKWebView加载Html文本的时候，需要引入头文件import  WebKit/WebKit.h ##2.创建WKWebView  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用WKWebView加载Html5文本，修改文本行间距以及字体颜色、大小等">
 <meta property="og:url" content="http://yoursite.com/2018/09/30/使用WKWebView加载Html5文本，修改文本行间距以及字体颜色、大小等/index.html">
 <meta property="og:site_name" content="ERMAO">
-<meta property="og:description" content="1.在使用WKWebView加载Html文本的时候，需要引入头文件  #import  WebKit/WebKit.h   2.创建WKWebView`  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(1">
+<meta property="og:description" content="###1.在使用WKWebView加载Html文本的时候，需要引入头文件import  WebKit/WebKit.h ##2.创建WKWebView  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-30T07:24:14.837Z">
+<meta property="og:updated_time" content="2018-09-30T07:25:49.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WKWebView加载Html5文本，修改文本行间距以及字体颜色、大小等">
-<meta name="twitter:description" content="1.在使用WKWebView加载Html文本的时候，需要引入头文件  #import  WebKit/WebKit.h   2.创建WKWebView`  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(1">
+<meta name="twitter:description" content="###1.在使用WKWebView加载Html文本的时候，需要引入头文件import  WebKit/WebKit.h ##2.创建WKWebView  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10">
 
 
 
@@ -303,12 +303,8 @@
       
 
       
-        <p>1.在使用WKWebView加载Html文本的时候，需要引入头文件</p>
-<pre><code>
-#import  WebKit/WebKit.h
-</code></pre>
-
-<p>2.创建WKWebView<br>`</p>
+        <p>###1.在使用WKWebView加载Html文本的时候，需要引入头文件<br><code>import  WebKit/WebKit.h</code></p>
+<p>##2.创建WKWebView</p>
 <pre><code>
 - (WKWebView *)webView {
 if (!_webView) {
@@ -330,15 +326,15 @@ web;
 return _webView;
 }
 </div></code></pre>
-3.关键代码
-//设置文本的行间距为30
+
+<p>##3.关键代码<br>//设置文本的行间距为30</p>
 <pre><code>
 NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];
 </div></code></pre>
 这句代码在拼接的时候需要“\”转义，源代码为
 `div style="line-height: 30px"`
 
-4.修改文本的字体和颜色
+##4.修改文本的字体和颜色
 在代理方法中
 <pre><code>
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
