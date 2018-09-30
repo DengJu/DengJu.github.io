@@ -309,7 +309,7 @@
 #import <webkit webkit.h="">
 </webkit></code></pre>
 
-<p>2.创建WKWebView</p>
+<p>2.创建WKWebView<br>`</p>
 <pre><code>
 - (WKWebView *)webView {
 if (!_webView) {
@@ -336,7 +336,8 @@ return _webView;
 //设置文本的行间距为30
 `NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];`
 </div></code></pre>
-这句代码在拼接的时候需要“\”转义，源代码为<div style="line-height: 30px">
+这句代码在拼接的时候需要“\”转义，源代码为
+`<div style="line-height: 30px">`
 
 4.修改文本的字体和颜色
 在代理方法中
