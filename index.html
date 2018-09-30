@@ -307,14 +307,12 @@
             <h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><blockquote>
 <ul>
 <li>一般刷新tableView的时候，执行<br><code>[self.tableView reloadData]</code><br>会刷新table表单里面的所有数据</li>
-<li>但是在项目中，难免遇到一种需求：如下图<br><img src="/2018/09/30/tableView的Header刷新问题/youbaQD.jpg" alt="图片"><br>在图片中，上面是headerView，下面是cell，在点击按钮的时候，改变下面数据源，但是上面的按钮有选中状态，默认是选中一个按钮的，假如默认选中第一个按钮，在点击第二个按钮的时候刷新tableView，第一个按钮也会变成选中状态。</li>
+<li>但是在项目中，难免遇到一种需求：如下图<br><img src="/2018/09/30/tableView的Header刷新问题/youbaQD.jpg" alt=""><br>在图片中，上面是headerView，下面是cell，在点击按钮的时候，改变下面数据源，但是上面的按钮有选中状态，默认是选中一个按钮的，假如默认选中第一个按钮，在点击第二个按钮的时候刷新tableView，第一个按钮也会变成选中状态。</li>
 </ul>
 </blockquote>
-<blockquote>
 <ul>
 <li>出现这种情况的原因可能是：</li>
 </ul>
-</blockquote>
 <h4 id="1-在设置按钮单选的时候，tag值搞错了。"><a href="#1-在设置按钮单选的时候，tag值搞错了。" class="headerlink" title="1.在设置按钮单选的时候，tag值搞错了。"></a>1.在设置按钮单选的时候，tag值搞错了。</h4><h4 id="2-在设置tableView的headerView的时候，是用代理方法设置的，执行-self-tableView-reloadData-的时候，又走了一遍代理方法，给headerView中的按钮重新赋值了。如下"><a href="#2-在设置tableView的headerView的时候，是用代理方法设置的，执行-self-tableView-reloadData-的时候，又走了一遍代理方法，给headerView中的按钮重新赋值了。如下" class="headerlink" title="2.在设置tableView的headerView的时候，是用代理方法设置的，执行[self.tableView reloadData]的时候，又走了一遍代理方法，给headerView中的按钮重新赋值了。如下:"></a>2.在设置tableView的headerView的时候，是用代理方法设置的，执行[self.tableView reloadData]的时候，又走了一遍代理方法，给headerView中的按钮重新赋值了。如下:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section &#123;</span><br><span class="line">SQSignInHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(SQSignInHeaderView.class)];</span><br><span class="line">view.delegate = self;</span><br><span class="line">[view setDetailModel:_signInDetail];</span><br><span class="line">[view setCurrentMonthDays:_percentViewWidth];</span><br><span class="line">return view;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><blockquote>
 <ul>
