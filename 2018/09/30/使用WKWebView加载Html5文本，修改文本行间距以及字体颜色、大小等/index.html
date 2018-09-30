@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="ERMAO">
 <meta property="og:description" content="1.在使用WKWebView加载Html文本的时候，需要引入头文件  #import    2.创建WKWebView  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10*DHFlexibleHoriz">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-30T03:09:01.315Z">
+<meta property="og:updated_time" content="2018-09-30T07:05:57.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WKWebView加载Html5文本，修改文本行间距以及字体颜色、大小等">
 <meta name="twitter:description" content="1.在使用WKWebView加载Html文本的时候，需要引入头文件  #import    2.创建WKWebView  - (WKWebView *)webView { if (!_webView) { self.webView = ({ WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10*DHFlexibleHoriz">
@@ -335,17 +335,22 @@ return _webView;
 //设置文本的行间距为30
 NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];
 </div></code></pre>
-这句代码在拼接的时候需要用“\”转义，源代码为
-<pre><code>
+这句代码在拼接的时候需要“\”转义，源代码为
 <div style="line-height: 30px">
-</div></code></pre>
 
-<p>4.修改文本的字体和颜色<br>在代理方法中</p>
-<p><pre><code></code></pre></p>
-<ul>
-<li>(void)webView:(WKWebView <em>)webView didFinishNavigation:(WKNavigation </em>)navigation {<br>//修改字体大小<br>[ webView evaluateJavaScript:@”document.getElementsByTagName(‘body’)[0].style.webkitTextSizeAdjust= ‘300%’”completionHandler:nil];<br>//修改字体颜色<br>[ webView evaluateJavaScript:@”document.getElementsByTagName(‘body’)[0].style.webkitTextFillColor= ‘#999999’”completionHandler:nil];<br>}<br><br>300%—字体大小，#999999—颜色</li>
-</ul>
+4.修改文本的字体和颜色
+在代理方法中
+<pre><code>
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+//修改字体大小
+[ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'"completionHandler:nil];
+//修改字体颜色
+[ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#999999'"completionHandler:nil];
+}
+</code></pre>
 
+<p>300%—字体大小，#999999—颜色</p>
+</div>
       
     </div>
     
