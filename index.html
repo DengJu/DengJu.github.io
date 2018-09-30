@@ -305,47 +305,9 @@
         
           
             <p>###1.在使用WKWebView加载Html文本的时候，需要引入头文件<br><code>import  WebKit/WebKit.h</code></p>
-<p>##2.创建WKWebView</p>
-<pre><code>
-- (WKWebView *)webView {
-if (!_webView) {
-self.webView = ({
-WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10*DHFlexibleHorizontalMutiplier(), 97*DHFlexibleHorizontalMutiplier(), 297*DHFlexibleHorizontalMutiplier(), 309*DHFlexibleHorizontalMutiplier())];
-
-NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];
-
-[web loadHTMLString:str baseURL:nil];
-web.scrollView.showsVerticalScrollIndicator = NO;
-web.scrollView.bounces = NO;
-web.navigationDelegate = self;
-for (UIView *view in web.subviews) {
-NSLog(@"%@",view);
-}
-web;
-});
-}
-return _webView;
-}
-</div></code></pre>
-
-<p>##3.关键代码<br>//设置文本的行间距为30</p>
-<pre><code>
-NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];
-</div></code></pre>
-这句代码在拼接的时候需要“\”转义，源代码为
-`div style="line-height: 30px"`
-
-##4.修改文本的字体和颜色
-在代理方法中
-<pre><code>
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-//修改字体大小
-[ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'"completionHandler:nil];
-//修改字体颜色
-[ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#999999'"completionHandler:nil];
-}
-</code></pre>
-
+<p>##2.创建WKWebView<br><figure class="highlight plain"><figcaption><span>(WKWebView *)webView &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if (!_webView) &#123;</span><br><span class="line">self.webView = (&#123;</span><br><span class="line">WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(10*DHFlexibleHorizontalMutiplier(), 97*DHFlexibleHorizontalMutiplier(), 297*DHFlexibleHorizontalMutiplier(), 309*DHFlexibleHorizontalMutiplier())];</span><br><span class="line"></span><br><span class="line">NSString *str = [NSString stringWithFormat:@&quot;&lt;div style=\&quot;line-height: 30px\&quot;&gt;%@&quot;,_rule];</span><br><span class="line"></span><br><span class="line">[web loadHTMLString:str baseURL:nil];</span><br><span class="line">web.scrollView.showsVerticalScrollIndicator = NO;</span><br><span class="line">web.scrollView.bounces = NO;</span><br><span class="line">web.navigationDelegate = self;</span><br><span class="line">for (UIView *view in web.subviews) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;,view);</span><br><span class="line">&#125;</span><br><span class="line">web;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line">return _webView;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/code&gt;&lt;/pre&gt;</span><br><span class="line"></span><br><span class="line">##3.关键代码</span><br><span class="line">//设置文本的行间距为30</span><br><span class="line">&lt;pre&gt;&lt;code&gt;</span><br><span class="line">NSString *str = [NSString stringWithFormat:@&quot;&lt;div style=\&quot;line-height: 30px\&quot;&gt;%@&quot;,_rule];</span><br></pre></td></tr></table></figure></p>
+<p>这句代码在拼接的时候需要“\”转义，源代码为<br><code>&lt;div style=&quot;line-height: 30px&quot;&gt;</code></p>
+<p>##4.修改文本的字体和颜色<br>在代理方法中<br><figure class="highlight plain"><figcaption><span>(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//修改字体大小</span><br><span class="line">[ webView evaluateJavaScript:@&quot;document.getElementsByTagName(&apos;body&apos;)[0].style.webkitTextSizeAdjust= &apos;300%&apos;&quot;completionHandler:nil];</span><br><span class="line">//修改字体颜色</span><br><span class="line">[ webView evaluateJavaScript:@&quot;document.getElementsByTagName(&apos;body&apos;)[0].style.webkitTextFillColor= &apos;#999999&apos;&quot;completionHandler:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>300%—字体大小，#999999—颜色</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@requires_authorization</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></span><br><span class="line"><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"><span class="comment"># A comment</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'hello world'</span></span><br></pre></td></tr></table></figure>
 
