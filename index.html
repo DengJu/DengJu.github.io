@@ -333,23 +333,21 @@ return _webView;
 </div></code></pre>
 3.关键代码
 //设置文本的行间距为30
-```NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];```
+<pre><code>
+NSString *str = [NSString stringWithFormat:@"<div style="\"line-height:" 30px\"="">%@",_rule];
+</div></code></pre>
 这句代码在拼接的时候需要“\”转义，源代码为
 <div style="line-height: 30px">
 
 4.修改文本的字体和颜色
 在代理方法中
 <pre><code>
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-//修改字体大小
-[ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'"completionHandler:nil];
-//修改字体颜色
-[ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#999999'"completionHandler:nil];
-}
+<figure class="highlight plain"><figcaption><span>(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//修改字体大小</span><br><span class="line">[ webView evaluateJavaScript:@&quot;document.getElementsByTagName(&apos;body&apos;)[0].style.webkitTextSizeAdjust= &apos;300%&apos;&quot;completionHandler:nil];</span><br><span class="line">//修改字体颜色</span><br><span class="line">[ webView evaluateJavaScript:@&quot;document.getElementsByTagName(&apos;body&apos;)[0].style.webkitTextFillColor= &apos;#999999&apos;&quot;completionHandler:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </code></pre>
 
 <p>300%—字体大小，#999999—颜色</p>
-</div></div>
+</div>
           
         
       
